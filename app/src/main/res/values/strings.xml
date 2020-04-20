@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">EasyContact</string>
+    <string name="loggingBigText">Logowanie</string>
+    <string name="textLogin">Login</string>
+    <string name="textPassword">Hasło</string>
+    <string name="buttonLogin">Zaloguj</string>
+    <string name="questionAboutRegistration">Nie masz jeszcze konta?</string>
+    <string name="register">Zarejestruj się</string>
+
 </resources>
