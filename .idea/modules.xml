@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/EasyContact.iml" filepath="$PROJECT_DIR$/EasyContact.iml" group="EasyContact" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="EasyContact/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Frontend.iml" filepath="$PROJECT_DIR$/.idea/Frontend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MobileApp.iml" filepath="$PROJECT_DIR$/MobileApp.iml" group="MobileApp" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="MobileApp/app" />
     </modules>
   </component>
 </project>

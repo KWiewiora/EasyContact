@@ -1,11 +1,31 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="@style/Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AuthActivityTheme" parent="@style/Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="MainEditTextLayoutStyle" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/red</item>
+        <item name="hintTextColor">@color/red</item>
+    </style>
+
+    <style name="MainBackground">
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <style name="MainOutlinedButton" parent="@style/Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="rippleColor">@color/redSemiTransparent</item>
     </style>
 
 </resources>

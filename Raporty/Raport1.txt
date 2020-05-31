@@ -1,4 +1,0 @@
-Podczas tego czasu, dużo nie dotknąłem kodu, ze względu iż cały czas się zastanawiałem nad  technologią w której chcę tworzyć aplikację.
-Teraz wiem, że będzie to android studio i od pewnego czasu zacząłem się tego uczyć bo nigdy nie programowałem nawet w Javie, stąd potrzebuję
-jeszcze trochę czasu by pojawiło się coś konkretnego dotyczącego projektu
-Pozdrawiam.

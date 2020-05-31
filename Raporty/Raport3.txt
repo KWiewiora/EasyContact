@@ -1,4 +1,0 @@
-Od ostatniego czasu udało się:
--Stworzyć połączenie w PHP z bazą danych, która pozwala mi na rejestrację i logowanie użytkowników
--Stworzenie bazy danych odpowiedniej dla aplikacji i zaimplementowanie jej na phpmyadmin
-

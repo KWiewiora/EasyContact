@@ -1,6 +1,0 @@
-Raport 2
-Stworzyłem panel logowania wraz z klasą, która będzie wpisywała do bazy danych użytkowników.
-Koncept bazy danych został już rozpisany, choć jeszcze nie wdrożony.
-Będą trzy tabele, kierowcy, firmy dostawcze i miejsca przewozowe.
-Gdy użytkownik będzie się logował, będzie musiał wybrać jako kto się rejestruję.
-Pod to będą przygotowane poszczególne activities, z różnymi opcjami dla każdej z grupy.
