@@ -1,6 +1,7 @@
-package com.raddyr.serverapp.models;
+package com.easyContact.serverapp.models;
 
-import com.raddyr.serverapp.dao.entity.UserInfo;
+
+import com.easyContact.serverapp.dao.entity.UserInfo;
 
 import java.util.List;
 

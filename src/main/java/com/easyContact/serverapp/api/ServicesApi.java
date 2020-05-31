@@ -2,10 +2,10 @@ package com.easyContact.serverapp.api;
 
 import com.easyContact.serverapp.dao.entity.*;
 import com.easyContact.serverapp.manager.*;
+import com.easyContact.serverapp.models.AuthResponse;
 import com.easyContact.serverapp.models.OrdersInfo;
 import com.easyContact.serverapp.models.exception.EntityNotFoundException;
 import com.easyContact.serverapp.Util;
-import com.easyContact.serverapp.models.AuthResponse;
 import com.easyContact.serverapp.models.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -26,7 +26,7 @@ public class ServicesApi {
     private PrincipalManger principalManager;
     private SupplyCompaniesManager supplyCompaniesManager;
     private DeliveryOrdersManager deliveryOrdersManager;
-
+    //
     @EventListener(ApplicationReadyEvent.class)
     public void fillDb() {
         userManager.save(new User(1L, "wzium@gmail.com", "haslo123"));
