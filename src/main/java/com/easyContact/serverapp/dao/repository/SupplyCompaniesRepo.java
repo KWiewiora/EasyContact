@@ -8,8 +8,7 @@ import java.util.Optional;
 
 public interface SupplyCompaniesRepo extends CrudRepository<SupplyCompanies, Long> {
 
-    SupplyCompanies findFirstByUserId(Long userId);
+    SupplyCompanies findFirstByUserId( Long userId);
     Optional<SupplyCompanies> findFirstById(Long id);
-
     List<SupplyCompanies> findAll();
 }

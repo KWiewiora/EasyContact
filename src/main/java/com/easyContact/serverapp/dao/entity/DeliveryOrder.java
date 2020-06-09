@@ -23,6 +23,7 @@ public class DeliveryOrder {
         this.principalId = principalId;
     }
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
     private String ware;

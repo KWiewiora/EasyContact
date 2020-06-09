@@ -1,8 +1,8 @@
 package com.easyContact.serverapp.manager;
 
-import com.easyContact.serverapp.models.exception.EntityNotFoundException;
 import com.easyContact.serverapp.dao.entity.DeliveryOrder;
 import com.easyContact.serverapp.dao.repository.DeliveryOrdersRepo;
+import com.easyContact.serverapp.models.exception.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,9 +24,6 @@ public class DeliveryOrdersManager {
         return deliveryOrdersRepo.findById(id);
     }
 
-//    public Iterable<DeliveryOrder> findAll() {
-//        return deliveryOrdersRepo.findAll();
-//    }
 
     public DeliveryOrder save(DeliveryOrder data) {
         return deliveryOrdersRepo.save(data);
@@ -34,14 +31,19 @@ public class DeliveryOrdersManager {
 
     public List<DeliveryOrder> getAllOrdersByExecutor(Long id) {
         return deliveryOrdersRepo.findAll().stream()
-                .filter(deliveryOrder -> deliveryOrder.getExecutorId() != null)
-                .filter(deliveryOrder -> deliveryOrder.getExecutorId().equals(id))
+                .map(this::mapNullToOther)
+                .collect(Collectors.toList())
+                .stream()
+                .filter(deliveryOrder -> deliveryOrder.getExecutorId() == -1 || deliveryOrder.getExecutorId().equals(id))
                 .collect(Collectors.toList());
     }
 
-//    public List<DeliveryOrder> getAllOrdersByExecutor(Long id) {
-//        return deliveryOrdersRepo.findAllByExecutorId(id);
-//    }
+    private DeliveryOrder mapNullToOther(DeliveryOrder deliveryOrder) {
+        if (deliveryOrder.getExecutorId() == null) {
+            deliveryOrder.setExecutorId(-1L);
+        }
+        return deliveryOrder;
+    }
 
     public List<DeliveryOrder> getAllOrdersByPrincipal(Long id) {
         return deliveryOrdersRepo.findAllByPrincipalId(id);
@@ -58,6 +60,4 @@ public class DeliveryOrdersManager {
             throw new EntityNotFoundException("nie znaleziono id");
         }
     }
-
-
 }

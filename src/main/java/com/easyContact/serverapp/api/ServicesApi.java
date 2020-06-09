@@ -1,12 +1,12 @@
 package com.easyContact.serverapp.api;
 
+import com.easyContact.serverapp.Util;
 import com.easyContact.serverapp.dao.entity.*;
 import com.easyContact.serverapp.manager.*;
 import com.easyContact.serverapp.models.AuthResponse;
+import com.easyContact.serverapp.models.Order;
 import com.easyContact.serverapp.models.OrdersInfo;
 import com.easyContact.serverapp.models.exception.EntityNotFoundException;
-import com.easyContact.serverapp.Util;
-import com.easyContact.serverapp.models.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
@@ -26,7 +26,7 @@ public class ServicesApi {
     private PrincipalManger principalManager;
     private SupplyCompaniesManager supplyCompaniesManager;
     private DeliveryOrdersManager deliveryOrdersManager;
-    //
+
     @EventListener(ApplicationReadyEvent.class)
     public void fillDb() {
         userManager.save(new User(1L, "wzium@gmail.com", "haslo123"));
@@ -51,9 +51,9 @@ public class ServicesApi {
         supplyCompaniesManager.save(new SupplyCompanies(2L, "Ikea Dostawy", "Biała, Gdańsk", "+48789124", 2L));
         supplyCompaniesManager.save(new SupplyCompanies(3L, "XYZ Dostawy", "Zielona, Gdynia", "+48667898724", 1L));
 
-        deliveryOrdersManager.save(new DeliveryOrder(3423L, "Skrzynki 20kg jabłka", "50", 1L, 3L, LocalDate.of(2020, 5, 19), 3L, 1L));
-        deliveryOrdersManager.save(new DeliveryOrder(1223L, "Filety z dorsza- skrzynka 10kg", "20", 2L, 3L, LocalDate.of(2020, 5, 20), 2L, 2L));
-        deliveryOrdersManager.save(new DeliveryOrder(7526L, "Majonez Kielecki- skrzynka 20kg", "100", 2L, 3L, LocalDate.of(2020, 6, 5), 1L, 3L));
+        deliveryOrdersManager.save(new DeliveryOrder(3423L, "Skrzynki 20kg jabłka", "50", 1L, 3L, LocalDate.of(2020, 5, 19), null, 1L));
+        deliveryOrdersManager.save(new DeliveryOrder(1223L, "Filety z dorsza- skrzynka 10kg", "20", 2L, 3L, LocalDate.of(2020, 5, 20), null, 1L));
+        deliveryOrdersManager.save(new DeliveryOrder(7526L, "Majonez Kielecki- skrzynka 20kg", "100", 2L, 3L, LocalDate.of(2020, 6, 5), 2L, 1L));
     }
 
     @Autowired
@@ -87,13 +87,18 @@ public class ServicesApi {
         return this.userManager.save(user).getClass() == User.class;
     }
 
+
     @PostMapping("signIn")
-    public AuthResponse getContentOrNull(@RequestBody User user) {
+    public AuthResponse signIn(@RequestBody User user) {
+        return getContentOrNull(user, true);
+    }
+
+    public AuthResponse getContentOrNull(@RequestBody User user, boolean shouldValidate) {
 
         if (userManager.getIdByEmail(user.getEmail()) != null) {
-            UserInfo warehouseContent = warehouseManager.getContent(userManager.getIdByEmail(user.getEmail()));
+            UserInfo warehouseContent = warehouseManager.getContent((userManager.getIdByEmail(user.getEmail())));
             UserInfo supplyCompaniesContent = supplyCompaniesManager.getContent(userManager.getIdByEmail(user.getEmail()));
-            UserInfo principalContent = principalManager.getContent(userManager.getIdByEmail(user.getEmail()));
+            Principal principalContent = principalManager.getContent(userManager.getIdByEmail(user.getEmail()));
             AuthResponse authResponse;
 
             if (warehouseContent != null) {
@@ -110,7 +115,7 @@ public class ServicesApi {
             }
             if (principalContent != null) {
                 principalContent.setUserType(Util.PRINCIPAL);
-                final List<DeliveryOrder> deliveryOrders = deliveryOrdersManager.getAllOrdersByPrincipal(principalContent.id);
+                final List<DeliveryOrder> deliveryOrders = deliveryOrdersManager.getAllOrdersByPrincipal(principalContent.getId());
                 authResponse = new AuthResponse(principalContent, getOrders(deliveryOrders));
                 return authResponse;
             }
@@ -119,8 +124,9 @@ public class ServicesApi {
     }
 
     @DeleteMapping("deleteDeliveryOrder")
-    public void deleteDeliveryOrder(@RequestParam Long deliveryOrderId) throws EntityNotFoundException {
+    public AuthResponse deleteDeliveryOrder(@RequestParam Long deliveryOrderId, @RequestParam String email) throws EntityNotFoundException {
         deliveryOrdersManager.deleteById(deliveryOrderId);
+        return getContentOrNull(new User(0L, email, ""), false);
     }
 
     @GetMapping("getOrdersInfo")
@@ -132,9 +138,16 @@ public class ServicesApi {
         return ordersInfos;
     }
 
+
+    @GetMapping("getUpdatedContent")
+    public AuthResponse getUpdatedContent(@RequestParam String email) {
+        return getContentOrNull(new User(0L, email, ""), false);
+    }
+
     @PostMapping("insertDeliveryOrder")
-    public void insertDeliveryOrder(@RequestBody DeliveryOrder deliveryOrder) {
+    public AuthResponse insertDeliveryOrder(@RequestBody DeliveryOrder deliveryOrder,@RequestParam String email) {
         deliveryOrdersManager.save(deliveryOrder);
+        return getContentOrNull(new User(0L, email, ""), false);
     }
 
 }

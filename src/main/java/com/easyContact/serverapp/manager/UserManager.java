@@ -34,6 +34,10 @@ public class UserManager {
     }
 
     public Long getIdByEmail(String email) {
-        return userRepo.findFirstByEmail(email).getId();
+        Optional<User> user = userRepo.findFirstByEmail(email);
+        if (user.isPresent()) {
+            return user.get().getId();
+        }
+        return 0L;
     }
 }

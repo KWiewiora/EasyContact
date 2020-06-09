@@ -1,6 +1,5 @@
 package com.easyContact.serverapp.models;
 
-
 import com.easyContact.serverapp.dao.entity.UserInfo;
 
 import java.util.List;
