@@ -1,0 +1,3 @@
+Od ostatniego czasu udało się :
+-stworzyć połącznie z bazą danych za pomocą PHP
+-stworzyć bazę danych odpowiednią dla aplikacji i zaimplementowanie jej na localhoście

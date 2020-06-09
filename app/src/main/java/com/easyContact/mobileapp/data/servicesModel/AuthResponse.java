@@ -9,19 +9,19 @@ import java.util.List;
 public class AuthResponse implements Parcelable {
     private final UserInfo userInfo;
 
-    private final List<DeliveryOrders> deliveryOrders;
+    private final List<Orders> orders;
 
-    public AuthResponse(UserInfo userInfo, List<DeliveryOrders> deliveryOrders) {
+    public AuthResponse(UserInfo userInfo, List<Orders> orders) {
         this.userInfo = userInfo;
-        this.deliveryOrders = deliveryOrders;
+        this.orders = orders;
     }
 
     public UserInfo getUserInfo() {
         return userInfo;
     }
 
-    public List<DeliveryOrders> getDeliveryOrders() {
-        return deliveryOrders;
+    public List<Orders> getOrders() {
+        return orders;
     }
 
     public static class UserInfo implements Parcelable {
@@ -54,6 +54,14 @@ public class AuthResponse implements Parcelable {
             return id;
         }
 
+        public String getEmail() {
+            return email;
+        }
+
+        public void setEmail(String email) {
+            this.email = email;
+        }
+
         public String getName() {
             return name;
         }
@@ -72,14 +80,6 @@ public class AuthResponse implements Parcelable {
 
         public String getUserType() {
             return userType;
-        }
-
-        public String getEmail() {
-            return email;
-        }
-
-        public void setEmail(String email) {
-            this.email = email;
         }
 
         @Override
@@ -121,33 +121,33 @@ public class AuthResponse implements Parcelable {
         };
     }
 
-    public static class DeliveryOrders implements Parcelable {
+    public static class Orders implements Parcelable {
         private final int id;
 
         private final String ware;
 
         private final String quantity;
 
-        private final int fromId;
+        private final String wareFromName;
 
-        private final int toId;
+        private final String wareToName;
 
-        private final int principalId;
+        private final String principalName;
 
-        private final String expectedDeliveryTime;
+        private final String deliveryDate;
 
-        private final int executorId;
+        private final String executorName;
 
-        public DeliveryOrders(int id, String ware, String quantity, int fromId, int toId,
-                              int principalId, String expectedDeliveryTime, int executorId) {
+        public Orders(int id, String ware, String quantity, String wareFromName, String wareToName,
+                      String principalName, String deliveryDate, String executorName) {
             this.id = id;
             this.ware = ware;
             this.quantity = quantity;
-            this.fromId = fromId;
-            this.toId = toId;
-            this.principalId = principalId;
-            this.expectedDeliveryTime = expectedDeliveryTime;
-            this.executorId = executorId;
+            this.wareFromName = wareFromName;
+            this.wareToName = wareToName;
+            this.principalName = principalName;
+            this.deliveryDate = deliveryDate;
+            this.executorName = executorName;
         }
 
         public int getId() {
@@ -162,24 +162,24 @@ public class AuthResponse implements Parcelable {
             return quantity;
         }
 
-        public int getFromId() {
-            return fromId;
+        public String getWareFromName() {
+            return wareFromName;
         }
 
-        public int getToId() {
-            return toId;
+        public String getWareToName() {
+            return wareToName;
         }
 
-        public int getPrincipalId() {
-            return principalId;
+        public String getPrincipalName() {
+            return principalName;
         }
 
-        public String getExpectedDeliveryTime() {
-            return expectedDeliveryTime;
+        public String getDeliveryDate() {
+            return deliveryDate;
         }
 
-        public int getExecutorId() {
-            return executorId;
+        public String getExecutorName() {
+            return executorName;
         }
 
         @Override
@@ -192,33 +192,33 @@ public class AuthResponse implements Parcelable {
             dest.writeInt(this.id);
             dest.writeString(this.ware);
             dest.writeString(this.quantity);
-            dest.writeInt(this.fromId);
-            dest.writeInt(this.toId);
-            dest.writeInt(this.principalId);
-            dest.writeString(this.expectedDeliveryTime);
-            dest.writeInt(this.executorId);
+            dest.writeString(this.wareFromName);
+            dest.writeString(this.wareToName);
+            dest.writeString(this.principalName);
+            dest.writeString(this.deliveryDate);
+            dest.writeString(this.executorName);
         }
 
-        protected DeliveryOrders(Parcel in) {
+        protected Orders(Parcel in) {
             this.id = in.readInt();
             this.ware = in.readString();
             this.quantity = in.readString();
-            this.fromId = in.readInt();
-            this.toId = in.readInt();
-            this.principalId = in.readInt();
-            this.expectedDeliveryTime = in.readString();
-            this.executorId = in.readInt();
+            this.wareFromName = in.readString();
+            this.wareToName = in.readString();
+            this.principalName = in.readString();
+            this.deliveryDate = in.readString();
+            this.executorName = in.readString();
         }
 
-        public static final Creator<DeliveryOrders> CREATOR = new Creator<DeliveryOrders>() {
+        public static final Creator<Orders> CREATOR = new Creator<Orders>() {
             @Override
-            public DeliveryOrders createFromParcel(Parcel source) {
-                return new DeliveryOrders(source);
+            public Orders createFromParcel(Parcel source) {
+                return new Orders(source);
             }
 
             @Override
-            public DeliveryOrders[] newArray(int size) {
-                return new DeliveryOrders[size];
+            public Orders[] newArray(int size) {
+                return new Orders[size];
             }
         };
     }
@@ -231,13 +231,13 @@ public class AuthResponse implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeParcelable(this.userInfo, flags);
-        dest.writeList(this.deliveryOrders);
+        dest.writeList(this.orders);
     }
 
     protected AuthResponse(Parcel in) {
         this.userInfo = in.readParcelable(UserInfo.class.getClassLoader());
-        this.deliveryOrders = new ArrayList<DeliveryOrders>();
-        in.readList(this.deliveryOrders, DeliveryOrders.class.getClassLoader());
+        this.orders = new ArrayList<Orders>();
+        in.readList(this.orders, Orders.class.getClassLoader());
     }
 
     public static final Parcelable.Creator<AuthResponse> CREATOR = new Parcelable.Creator<AuthResponse>() {

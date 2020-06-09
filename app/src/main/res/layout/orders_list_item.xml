@@ -1,25 +1,184 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="15dp"
-    android:id="@+id/parent_layout">
+    android:layout_height="wrap_content">
 
-    <ImageView
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:id="@+id/image"
-        android:src="@drawable/ic_photo"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/parent_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/spacing_normal"
+            android:paddingBottom="@dimen/spacing_tiny_plus"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Canada"
-        android:id="@+id/image_name"
-        android:layout_toRightOf="@+id/image"
-        android:textColor="#000"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="30dp"
-        android:textSize="17sp"/>
+                <TextView
+                    android:id="@+id/wareTitle"
+                    style="@style/OrderListItemTitleStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/name_order"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-</RelativeLayout>
+                <TextView
+                    android:id="@+id/wareTxt"
+                    style="@style/OrderListItemTxtStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Swędzące kukle"
+                    app:layout_constraintStart_toEndOf="@id/wareTitle"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/quantityTitle"
+                    style="@style/OrderListItemTitleStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/quantity"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/wareTitle" />
+
+                <TextView
+                    android:id="@+id/quantityTxt"
+                    style="@style/OrderListItemTxtStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="500"
+                    app:layout_constraintStart_toEndOf="@id/quantityTitle"
+                    app:layout_constraintTop_toBottomOf="@id/wareTxt" />
+
+                <TextView
+                    android:id="@+id/wareFromTitle"
+                    style="@style/OrderListItemTitleStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/warehouse_from"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/quantityTxt" />
+
+                <TextView
+                    android:id="@+id/wareFromTxt"
+                    style="@style/OrderListItemTxtStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Magazyn Karakański"
+                    app:layout_constraintStart_toEndOf="@id/wareFromTitle"
+                    app:layout_constraintTop_toBottomOf="@id/quantityTitle" />
+
+                <TextView
+                    android:id="@+id/wareToTitle"
+                    style="@style/OrderListItemTitleStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/warehouse_to"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/wareFromTitle" />
+
+                <TextView
+                    android:id="@+id/wareToTxt"
+                    style="@style/OrderListItemTxtStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Magazyn Sumliński"
+                    app:layout_constraintStart_toEndOf="@id/wareToTitle"
+                    app:layout_constraintTop_toBottomOf="@id/wareFromTxt" />
+
+                <TextView
+                    android:id="@+id/principalTitle"
+                    style="@style/OrderListItemTitleStyle"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/principal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/wareToTitle" />
+
+                <TextView
+                    android:id="@+id/principalTxt"
+                    style="@style/OrderListItemTxtStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rachonie"
+                    app:layout_constraintStart_toEndOf="@id/principalTitle"
+                    app:layout_constraintTop_toBottomOf="@id/wareToTxt" />
+
+                <TextView
+                    android:id="@+id/executionDateTile"
+                    style="@style/OrderListItemTitleStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/execution_date"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/principalTitle" />
+
+                <TextView
+                    android:id="@+id/executionDateTxt"
+                    style="@style/OrderListItemTxtStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="01-01-1969"
+                    app:layout_constraintStart_toEndOf="@id/executionDateTile"
+                    app:layout_constraintTop_toBottomOf="@id/principalTitle" />
+
+                <TextView
+                    android:id="@+id/executorTitle"
+                    style="@style/OrderListItemTitleStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/executor"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/executionDateTile" />
+
+                <TextView
+                    android:id="@+id/executorTxt"
+                    style="@style/OrderListItemTxtStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Telewizje republiki"
+                    app:layout_constraintStart_toEndOf="@id/executorTitle"
+                    app:layout_constraintTop_toBottomOf="@id/executionDateTxt" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:padding="@dimen/spacing_large_half"
+            android:textSize="@dimen/font_normal_half"
+            android:visibility="gone"
+            android:layout_margin="10dp"
+            android:text="@string/cancel"
+            android:clickable="true"
+            android:background="?attr/selectableItemBackground"
+            android:id="@+id/cancelButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:padding="@dimen/spacing_large_half"
+            android:textSize="@dimen/font_normal_half"
+            android:visibility="gone"
+            android:layout_margin="10dp"
+            android:text="@string/assign_to_me"
+            android:clickable="true"
+            android:background="?attr/selectableItemBackground"
+            android:id="@+id/assignMeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/spacing_tiny"
+        app:layout_constraintTop_toBottomOf="@id/parent_layout"
+        android:layout_marginHorizontal="@dimen/spacing_normal_plus"
+        android:background="@android:color/darker_gray" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

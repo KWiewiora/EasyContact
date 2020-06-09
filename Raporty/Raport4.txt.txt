@@ -1,0 +1,4 @@
+Aplikacja potrzebowała zmiany kierunku, okazało się, że łączenie bazy JDBC z PHP jest beznadziejny.
+Musiałem szybko kombinować i zacząłem uczyć się spring'a - backendowego frameworku Javowego, w którym tworzę API
+do połączenia się z bazą danych.
+Aplikacja ma narazie wyświetlanie zleceń oraz niewalidacyjne logowanie.

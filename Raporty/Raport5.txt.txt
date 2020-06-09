@@ -1,0 +1,2 @@
+Stworzyłem API, które połączone jest z bazą danych na localhoście. Wszystko działa!!!!
+W aplikacji stworzone zostało activity na informacje o użytkowniku, oraz wygląd dla listy zleceń.

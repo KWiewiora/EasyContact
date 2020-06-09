@@ -1,0 +1,1 @@
+Stworzyłem rejestrację która tworzy nowego użytkownika i wpisuje do odpowiednich tabel w bazie danych.

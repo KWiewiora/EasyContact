@@ -1,0 +1,4 @@
+Podczas tego czasu, dużo nie dotknąłem kodu, ze względu iż cały czas się zastanawiałem nad technologia w której chce tworzyć aplikację.
+Teraz wiem, że będzie to android studio i od pewnego czasu zacząłem się uczyć programowania w Javie, gdyż nigdy nie miałem styczności z tym językiem.
+Potrzebuję jeszcze trochę czasu, by pojawiło się coś konkretnego dotyczące projektu
+Pozdrawiam.

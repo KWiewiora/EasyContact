@@ -11,21 +11,19 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.easyContact.mobileapp.R;
+import com.easyContact.mobileapp.data.repository.Resource;
 import com.easyContact.mobileapp.data.servicesModel.AuthResponse;
 import com.easyContact.mobileapp.ui.main.MainActivity;
 
 
 public class LoginFragment extends Fragment {
 
-    public static String NO_USER = "NO_USER";
-
     Button loginButton;
     Button registerButton;
-    public AuthViewModel authViewModel;
+    private AuthViewModel authViewModel;
     private EditText email;
     private EditText password;
 
@@ -59,19 +57,16 @@ public class LoginFragment extends Fragment {
 
     private void login() {
         authViewModel.init();
-        authViewModel.getLoginResponse(email.getText().toString(), password.getText().toString()).observe(getViewLifecycleOwner(), new Observer<AuthResponse>() {
-            @Override
-            public void onChanged(AuthResponse authResponse) {
-                validateResponse(authResponse, email.getText().toString());
-            }
-        });
+        authViewModel.getLoginResponse(email.getText().toString(), password.getText().toString()).observe(getViewLifecycleOwner(), authResponseResource -> validateResponse(authResponseResource, email.getText().toString()));
     }
 
-    private void validateResponse(AuthResponse authResponse, String email) {
-        authResponse.getUserInfo().setEmail(email);
-        if (authResponse.getUserInfo().getUserType().equals(NO_USER)) {
+    private void validateResponse(Resource<AuthResponse> authResource, String email) {
+        if (!authResource.isSuccessfull()) {
             showToastAndCleanView();
-        } else startActivity(MainActivity.prepareIntent(getContext(), authResponse));
+        } else {
+            authResource.getResponse().getUserInfo().setEmail(email);
+            startActivity(MainActivity.prepareIntent(getContext(), authResource.getResponse()));
+        }
     }
 
     private void showToastAndCleanView() {

@@ -1,0 +1,2 @@
+Zrobiłem opcje przyjęcia zlecenia dla firmy dostawczej, opcje dodania zlecenia dla zleceniodawcy.
+Wszystko updatuje się w bazie.

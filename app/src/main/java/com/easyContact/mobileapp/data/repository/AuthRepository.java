@@ -23,17 +23,17 @@ public class AuthRepository extends BaseRepository {
         servicesApi = NetworkController.createService(ServicesApi.class);
     }
 
-    public MutableLiveData<AuthResponse> getLoginResponse(String email, String password) {
-        MutableLiveData<AuthResponse> authResponseMutableLiveData;
+    public MutableLiveData<Resource<AuthResponse>> getLoginResponse(String email, String password) {
+        MutableLiveData<Resource<AuthResponse>> authResponseMutableLiveData;
         AuthRequest authRequest = new AuthRequest(email, password);
-        authResponseMutableLiveData = new Repository<AuthResponse>().getData(servicesApi.login(authRequest));
+        authResponseMutableLiveData = new BaseRepository<AuthResponse>().getData(servicesApi.login(authRequest));
         return authResponseMutableLiveData;
     }
 
-    public MutableLiveData<AuthResponse> getRegisterResponse(String email, String password) {
-        MutableLiveData<AuthResponse> authResponseMutableLiveData;
+    public MutableLiveData<Resource<AuthResponse>> getRegisterResponse(String email, String password) {
+        MutableLiveData<Resource<AuthResponse>> authResponseMutableLiveData;
         AuthRequest authRequest = new AuthRequest(email, password);
-        authResponseMutableLiveData = new Repository<AuthResponse>().getData(servicesApi.register(authRequest));
+        authResponseMutableLiveData = new BaseRepository<AuthResponse>().getData(servicesApi.register(authRequest));
         return authResponseMutableLiveData;
     }
 }

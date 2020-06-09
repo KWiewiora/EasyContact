@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.easyContact.mobileapp.data.repository.AuthRepository;
+import com.easyContact.mobileapp.data.repository.Resource;
 import com.easyContact.mobileapp.data.servicesModel.AuthResponse;
 
 public class AuthViewModel extends ViewModel {
@@ -13,7 +14,7 @@ public class AuthViewModel extends ViewModel {
         init();
     }
 
-    private MutableLiveData<AuthResponse> authResponseMutableLiveData;
+    private MutableLiveData<Resource<AuthResponse>> authResponseMutableLiveData;
 
     private AuthRepository authRepository;
 
@@ -22,14 +23,13 @@ public class AuthViewModel extends ViewModel {
         authRepository = AuthRepository.getInstance();
     }
 
-    public LiveData<AuthResponse> getLoginResponse(String email, String password) {
+    public LiveData<Resource<AuthResponse>> getLoginResponse(String email, String password) {
         authResponseMutableLiveData = authRepository.getLoginResponse(email, password);
         return authResponseMutableLiveData;
     }
 
-    public LiveData<AuthResponse> getRegisterResponse(String email, String password) {
+    public LiveData<Resource<AuthResponse>> getRegisterResponse(String email, String password) {
         authResponseMutableLiveData = authRepository.getRegisterResponse(email, password);
         return authResponseMutableLiveData;
     }
-
 }

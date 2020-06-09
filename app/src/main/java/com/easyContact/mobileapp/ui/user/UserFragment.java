@@ -17,10 +17,10 @@ import com.easyContact.mobileapp.ui.main.MainActivity;
 
 public class UserFragment extends Fragment {
 
-    TextView name;
-    TextView email;
-    TextView address;
-    TextView phone;
+    private TextView name;
+    private TextView email;
+    private TextView address;
+    private TextView phone;
 
     AuthResponse.UserInfo userInfo;
 
@@ -45,7 +45,6 @@ public class UserFragment extends Fragment {
         name = view.findViewById(R.id.nameTxt);
         address = view.findViewById(R.id.addressTxt);
         phone = view.findViewById(R.id.phoneTxt);
-
         email.setText(userInfo.getEmail());
         name.setText(userInfo.getName());
         address.setText(userInfo.getAddress());
